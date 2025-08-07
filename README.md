@@ -9,10 +9,9 @@ Steps:
 Adjust sample files as needed.  
 
 1. Optional: Needs new namespace
-2. Optional after you create your namespace:
-```
-change default namespace:  'kubectl config set-context --current --namespace=awx'
-```
+2. Optional after you create your namespace, change default namespace:
+   
+   ```kubectl config set-context --current --namespace=awx```
  
 Apply using kubectl:
 ```
