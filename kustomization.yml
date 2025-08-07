@@ -1,0 +1,22 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: awx
+resources:
+  - github.com/kubernetes-sigs/nfs-subdir-external-provisioner//deploy
+  - github.com/ansible/awx-operator/config/default?ref=2.19.1
+  # - namespace.yml
+  - awx.yml
+patchesStrategicMerge:
+  - patch_nfs_details.yml
+images:
+  - name: quay.io/ansible/awx-operator
+    newTag: 2.19.1
+patches:
+- target:
+    kind: StorageClass
+    name: nfs-client
+  patch: |-
+    - op: replace
+      path: /metadata/name
+      value: nfs-dynamic-storage 

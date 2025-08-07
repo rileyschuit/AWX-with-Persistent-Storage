@@ -1,0 +1,25 @@
+---
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx
+spec:
+  service_type: nodeport
+  ipv6_disabled: true
+
+  postgres_resource_requirements:
+    requests:
+      cpu: 500m
+      memory: 2Gi
+    limits:
+      cpu: '1'
+      memory: 4Gi
+  postgres_storage_requirements:
+    requests:
+      storage: 8Gi
+    limits:
+      storage: 50Gi
+  postgres_storage_class: nfs-dynamic-storage
+  postgres_extra_args:
+    - '-c'
+    - 'max_connections=1000'
