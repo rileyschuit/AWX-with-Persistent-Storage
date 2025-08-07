@@ -2,6 +2,7 @@ Summary:  This is an example adding on to an install of AWX.  This will assist w
 
 Requirements:
 1.  Functional NFS server
+2.  Functional Kubernetes Cluster
 
 Steps:
 
@@ -14,11 +15,13 @@ change default namespace:  'kubectl config set-context --current --namespace=awx
 ```
  
 Apply using kubectl:
-'kubectl apply -k .'
+```
+kubectl apply -k .
+```
 
 You can watch the progress of awx install with command:
 ``` 
-'kubectl logs -f deployments/awx-operator-controller-manager -c awx-manager'
+kubectl logs -f deployments/awx-operator-controller-manager -c awx-manager
 ```
 
 To get the newly generated admin password, run this:
